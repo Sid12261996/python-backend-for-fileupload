@@ -9,7 +9,7 @@ from pymongo import MongoClient
 
 pwd = urllib.parse.quote('MeetTeam@18')
 connection_string = 'mongodb+srv://dev1:dev123@cluster0-5zaen.mongodb.net/prod-app?retryWrites=true&w=majority'
-database = 'beta'
+database = 'beta-app'
 app = Flask(__name__)
 app.config['MONGO_DBNAME'] = database
 app.config['MONGO_URI'] = connection_string
@@ -96,7 +96,7 @@ def Bulk_Register():
             user_in_json = user.__dict__
             to_add.append(user_in_json)
         result = application_user.insert_many(to_add)
-        return str(result.inserted_ids)
+        return 'Inserted Ids: '+str(result.inserted_ids)
     else:
         return 'failed'
 
